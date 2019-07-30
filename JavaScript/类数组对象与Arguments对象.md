@@ -94,7 +94,7 @@ Arguments对象只定义在函数体中，包括了函数的参数和其他属�
 
 打印结果如下： 
 
-   ![dkjf](./Arguments.jpg)
+   ![dkjf](./images/Arguments.jpg)
 
 除了有类数组的索引属性和length属性外，还有一个callee属性。   
 
