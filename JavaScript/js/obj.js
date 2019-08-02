@@ -65,10 +65,10 @@ master.feed(cat, fish)
 master.feed(tirger, chicken)
 
 // 1. 把子类中共有的属性和方法抽取出来，定义父类student
-function Student (name, age) {
+function Student(name, age) {
     this.name = name
     this.age = age
-    this.show = function() {
+    this.show = function () {
         console.log('------------')
         console.log('学生' + this.name + '今年' + this.age + '岁了！')
     }
@@ -102,3 +102,38 @@ let midStu1 = new MidStu1('zyx', '23')
 midStu1.show()
 let pupil1 = new Pupil1('wzm', '2')
 pupil1.show()
+
+
+function A() {
+    this.color = 'red'
+}
+function B() {}
+function C() {}
+B.prototype = new A()
+C.prototype = new B()
+let c = new C()
+console.log('测试原型继承 ', c.color) // 测试原型继承  red
+
+
+function SuperType(name) {
+    this.name = name
+    this.color = ['red', 'green', 'yellow']
+}
+SuperType.prototype.sayName = function() {
+    console.log(this.name)
+}
+function SubType(name, age) {
+    // 继承属性
+    SuperType.call(this, name)
+    this.age = age
+}
+// 继承方法
+SubType.prototype = new SuperType()
+SubType.prototype.sayAge = function () {
+    console.log(this.age)
+}
+let instancel = new SubType('zyl', 26)
+instancel.color.push('black')
+console.log(instancel.color) // [ 'red', 'green', 'yellow', 'black' ]
+instancel.sayName() // zyl
+instancel.sayAge() // 26
