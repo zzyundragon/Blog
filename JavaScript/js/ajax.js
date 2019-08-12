@@ -1,3 +1,6 @@
+/**
+ * 创建XMLHttpRequest对象
+ */
 function CreateXHR() {
     if (typeof XMLHttpRequest !== 'undefined') {
         return new XMLHttpRequest()
@@ -21,7 +24,8 @@ function CreateXHR() {
     }
 }
 /**
- * 
+ * get请求经常发生查询字符串格式引发的错误
+ * 可以对查询字符串中每个参数的名称和值用encodeURIComponent进行编码
  * @param {*} params 
  */
 function buildParamsStr(params) {
@@ -36,7 +40,7 @@ function buildParamsStr(params) {
     return str.slice(1)
 }
 /**
- * 
+ * get请求查询字符串拼接到URL的末尾
  * @param {String} url 请求地址 
  * @param {String} params 请求参数 
  */
