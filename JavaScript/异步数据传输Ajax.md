@@ -10,12 +10,17 @@ Ajax的核心Api是XMLHttpRequest对象，XHR为向服务器发送请求和解�
 
         xhr.open('get', 'hello.html', false)
         xhr.setRequestHeader('myHeader', 'myValue') // 设置请求头信息
+        xhr.timeout = 1000 // 设置请求超时
+        xhr.ontimeout = function() {
+                alert('请求超时')
+        }
+        xhr.overrideMimeType('text/xml') // 重写服务器返回的MIME类型
         xhr.send(null)
         xhr.abort() // 异步模式下，调用该方法来取消异步请求
 
 send()方法接受一个必传参数，即要作为请求主体发送的数据。如果没有则填null。调完send方法后请求就会被发送到服务器。
 
-> 同源策略，只能向同一个域中使用相同端口和协议的URL发送请求。
+> 同源策略是XHR的主要限制，规定只能向同一个域中使用相同端口和协议的URL发送请求。除非采用被认可的跨域解决方案，这个解决方案叫做CORS（Cross-Origin Resource Sharing，跨域资源共享）
 
 再接收到服务器响应后，响应的数据会自动填充到XHR对象的属性。相关属性如下：
 - responseText 作为响应主体被返回的文本
@@ -25,6 +30,10 @@ send()方法接受一个必传参数，即要作为请求主体发送的数据�
 - readyState 表示请求/响应过程的当前活动阶段，0未初始化1启动2发送3接收4完成，该属性值发生变化即触发一次readystatechange事件   
 
 接收到响应后，第一步检查status属性，以确定响应已经成功返回。
+
+[点击查看原生Ajax封装](/js/ajax.js)
+
+        
 
 ### HTTP头部信息
 每个HTTP请求和响应都会带有相应的头部信息，默认情况下在发送XHR请求的同时还会发送以下头部信息：
@@ -61,5 +70,5 @@ GET与POST的区别：
 - LINK 请求服务器简历链接关系
 - UNLINK 断开链接关系
 
-
+## CORS（Cross-Origin Resource Sharing，跨域资源共享）
 
