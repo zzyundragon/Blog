@@ -29,7 +29,7 @@ function CreateXHR() {
  * @param {*} params 
  */
 function buildParamsStr(params) {
-    let str
+    let str = ''
     for (key in params) {
         // 排除原型中属性
         if (params.hasOwnProperty(key)) {

@@ -1,0 +1,1 @@
+Vue.js的响应式原理依赖于Object.defineProperty()，通过设定对象属性的setter/getter方法来监听数据的变化。getter函数负责返回有效的值，setter负责决定如何处理数据。
