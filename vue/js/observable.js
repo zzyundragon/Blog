@@ -15,6 +15,8 @@ function observe(value, cb) {
  */
 function defineReactive(obj, key, val, cb) {
     Object.defineProperty(obj, key, {
+        configurable: true,
+        enumerable: true,
         get: () => {
             return val
         },
@@ -32,6 +34,8 @@ function _proxy(data) {
     const that = this
     Object.keys(data).forEach(key => {
         Object.defineProperty(that, key, {
+            configurable: true,
+            enumerable: true,
             get: () => {
                 return that._data[key]
             },
