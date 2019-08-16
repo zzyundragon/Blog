@@ -9,6 +9,6 @@
 - [JavaScript设计模式之观察者模式](https://github.com/zzyundragon/Blog/issues/6)
 - [JavaScript之对象的属性类型](https://github.com/zzyundragon/Blog/issues/8)
 - [JavaScript之创建对象的多种方式](https://github.com/zzyundragon/Blog/issues/9)
-
+- [JavaScript之递归](https://github.com/zzyundragon/Blog/issues/10)
 ## vue
 - [Vue.js响应式原理](https://github.com/zzyundragon/Blog/issues/7)
