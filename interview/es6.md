@@ -31,3 +31,31 @@ class只是个语法糖其本质还是函数，js中并不存在类。
 ### **class继承**
 class实现继承的核心在于使用extends表明继承自哪个父类，并且在子类构造函数中必须调用super，因为这段代码可以看成是 `Parent.call(this, value)`
 # 模块化
+- 为什么使用模块化
+- 哪些方式实现模块化，各有什么特点
+
+> **使用模块化主要是为了解决：命名冲突，提供复用性以及提高代码的可维护性。**
+
+### 立即执行函数
+通过函数作用域解决命名冲突，污染全局作用域的问题
+### CommonJS
+最早在Node中使用，现在webpack中也常用到。`module.exports` 将模块导出，在需要模块的文件内 `require` 引入。
+### ES Module
+原生实现的模块化方法，使用 `import from` 引入模块，`export/export default` 导出模块。与CommonJS不同的地方在于：
+1. CommonJS是同步的，ES Module是异步的
+2. CommonJS支持动态引入，而ES Module不可以
+3. CommonJS导出是值拷贝，就算导出的值变了而引入的值是不会变的，必须重新导入才可以；而ES Module采用的是实时绑定的方式，导入导出的值都指向同一个内存地址
+### AMD 和 CMD
+目前这两种方式应用较少。主要通过`define`加载模块，在函数作用域内引用。
+# Proxy
+- Proxy可以实现什么功能
+
+vue3.0中将会通过`Proxy`来替换原本的`Object.defineProperty`来实现数据响应式。Proxy是ES6中新增的功能，它可以用来自定义对象中的操作。
+
+        let p = new Proxy(target, handler)
+
+`target`代表需要添加代理的对象，`handler`用来自定义对象中的操作。在`handler`中可以自定义`set`或者`get`函数。之所以vue3.0要使用Proxy替换原本的API，原因在于Proxy无需一层层递归为每个属性添加代理，性能上表现更好。
+# map，filter，reduce
+- map 遍历原数组，将每一个元素拿出来做一些操作后放入新的数组中去，接收三个参数：当前元素索引，索引，原数组
+- filter 遍历数组将返回值为true的元素放入新数组中，入参与map函数相同
+- reduce 可以将数组中的元素通过回调函数最终转换为一个值，接收两个参数：回调函数和初始值
