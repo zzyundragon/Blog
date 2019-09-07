@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>zvue</title>
+</head>
+
+<body>
+  <script src="Zvue.js"></script>
+  <script>
+    const app = new Zvue({
+      data: {
+        name: 'jerry',
+        info: {
+          age: '26',
+          sexy: 'man'
+        }
+      }
+    })
+    app.name = 'jerry zhao'
+    app.info.age = '27'
+  </script>
+</body>
+
+</html>
