@@ -1,7 +1,5 @@
 # Step By Step
 
-## 计算机网络
-
 ## JavaScript
 - [JavaScirpt之面向对象三大特性：封装继承多态](https://github.com/zzyundragon/Blog/issues/2)
 - [JavaScirpt之从原型到原型链](https://github.com/zzyundragon/Blog/issues/1)
