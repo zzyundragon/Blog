@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内存泄漏</title>
+</head>
+
+<body>
+    <div id="root">
+        <div id="leak">memory leak</div>
+        <button>获取id</button>
+    </div>
+</body>
+<script>
+    function handler () {
+        let element = document.getElementById('leak')
+        console.log('element =', element.id)
+        element.onClick = function() {
+            return function () {
+                return element.id
+            }
+        }
+    }
+    window.onload = function () {
+        console.log('lll')
+        document.getElementsByTagName('button')[0].addEventListener('click', handler)
+    }
+</script>
+
+</html>
