@@ -1,0 +1,97 @@
+@import "./mixin.styl"
+// == flex基类
+// ------------------------
+.flex
+    display-flex()
+
+// 方向
+.flex-row
+    flex-direction(row,important)
+.flex-col
+    flex-direction(column,important)
+.flex-row-reverse
+    flex-direction(row-reverse,important)
+.flex-col-reverse
+    flex-direction(column-reverse,important)
+
+// 换行
+.flex-nowrap
+    flex-wrap(nowrap,important)
+.flex-wrap
+    flex-wrap(wrap,important)
+.flex-wrap-reverse
+    flex-wrap(wrap-reverse,important)
+
+// == 对齐
+// 主轴对齐，容器对齐
+.flex-start,.flex-top
+    justify-content(flex-start,important)
+.flex-end,.flex-bottom
+    justify-content(flex-end,important)
+.flex-center
+    justify-content(center,important)
+.flex-between
+    justify-content(space-between,important)
+.flex-around
+    justify-content(space-around,important)
+
+// 侧轴对齐，项目对齐
+.items-start,.items-top
+    align-items(flex-start,important)
+.items-end,.items-bottom
+    align-items(flex-end,important)
+.items-center
+    align-items(center,important)
+.items-baseline
+    align-items(baseline,important)
+.items-stretch
+    align-items(stretch,important)
+
+// 单个项目对齐
+.self-start,.self-top
+    align-self(flex-start,important)
+.self-end,.self-bottom
+    align-self(flex-end,important)
+.self-center
+    align-self(center,important)
+.self-baseline
+    align-self(baseline,important)
+.self-stretch
+    align-self(stretch,important)
+.self-auto
+    align-self(auto,important)
+
+// 多行对齐
+.content-start,.content-top
+    align-content(flex-start,important)
+.content-end,.content-bottom
+    align-content(flex-end,important)
+.content-center
+    align-content(center,important)
+.content-stretch
+    align-content(stretch,important)
+.content-between
+    align-content(space-between,important)
+.content-around
+    align-content(space-around,important)
+
+
+// 项目扩展比例、缩放比例及宽度
+.flex-auto
+    flex(1,1,auto,important)
+.flex-inherit
+    flex(0,1,auto,important)
+.flex-none
+    flex(0,0,auto,important)
+
+// 行垂直对齐
+.row-top 
+    @extend .items-start
+.row-bottom 
+    @extend .items-end
+.row-center
+    @extend .items-center
+.row-stretch
+    @extend .items-stretch
+.row-baseline
+    @extend .items-baseline

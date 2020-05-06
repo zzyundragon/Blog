@@ -1,0 +1,391 @@
+/* colors
+-------------------------- */
+$color-primary = #D87182
+$color-dark = #333
+$color-dark2 = #666
+$color-light= #888
+
+/* button-colors
+-------------------------- */
+$btn-active = #F26D83
+$btn-disabled = #CCC
+
+$btn-disabled-1= mix(#fff, $btn-active, 70%)
+/* 53a8ff */
+
+/* background-colors
+-------------------------- */
+$bg-color-base= #fff
+$bg-color-light = #f9f9f9 //页面浅灰背景&图片浅灰背景
+$bg-color-danger= #F9EFEF //页面浅红背景&按钮边框
+$bg-color-panel= #EC5D75
+
+/* tag-colors
+-------------------------- */
+$tag-primary=#D87182
+$tag-dark=#555
+
+
+/* methods
+-------------------------- */
+// 背景图片地址和大小
+bg($url) 
+  background-image url($url)
+  background-repeat no-repeat
+  background-size 100% 100%
+
+
+// 定位上下左右居中
+center() 
+  position absolute
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+
+
+// 定位上下居中
+ct() 
+  position absolute
+  top 50%
+  transform translateY(-50%)
+
+
+// // 定位左右居中
+cl() 
+  position absolute
+  left 50%
+  transform translateX(-50%)
+
+
+// // 宽高
+wh($width, $height)
+  width $width
+  height $height
+
+// // 字体大小，颜色
+sc($size, $color) 
+  font-size $size
+  color $color
+
+// flex
+display-flex() {
+  display: -webkit-box
+  display: -webkit-flex
+  display: -moz-box
+  display: -moz-flex
+  display: -ms-flexbox
+  display: flex
+}
+
+display-inline-flex() {
+  display: -webkit-inline-box
+  display: -webkit-inline-flex
+  display: -moz-inline-flex
+  display: -ms-inline-flexbox
+  display: inline-flex
+}
+
+flex-direction($value = row, $important = null) {
+  if $important == important {
+    if $value == row-reverse {
+      -webkit-box-direction: reverse
+      -webkit-box-orient: horizontal
+    } else if $value == column {
+      -webkit-box-direction: normal
+      -webkit-box-orient: vertical
+    } else if $value == column-reverse {
+      -webkit-box-direction: reverse
+      -webkit-box-orient: vertical
+    } else {
+      -webkit-box-direction: normal
+      -webkit-box-orient: horizontal
+    }
+    -webkit-flex-direction: $value
+    -moz-flex-direction: $value
+    -ms-flex-direction: $value
+    flex-direction: $value
+  } else {
+    if $value == row-reverse {
+      -webkit-box-direction: reverse
+      -webkit-box-orient: horizontal
+    } else if $value == column {
+      -webkit-box-direction: normal
+      -webkit-box-orient: vertical
+    } else if $value == column-reverse {
+      -webkit-box-direction: reverse
+      -webkit-box-orient: vertical
+    } else {
+      -webkit-box-direction: normal
+      -webkit-box-orient: horizontal
+    }
+    -webkit-flex-direction: $value
+    -moz-flex-direction: $value
+    -ms-flex-direction: $value
+    flex-direction: $value
+  }
+
+}
+
+flex-wrap($value = nowrap, $important = null) {
+  if $important == important {
+    -webkit-flex-wrap: $value
+    -moz-flex-wrap: $value
+    if $value == nowrap {
+      -ms-flex-wrap: none
+    } else {
+      -ms-flex-wrap: $value
+    }
+    flex-wrap: $value
+  } else {
+    -webkit-flex-wrap: $value
+    -moz-flex-wrap: $value
+    if $value == nowrap {
+      -ms-flex-wrap: none
+    } else {
+      -ms-flex-wrap: $value
+    }
+    flex-wrap: $value
+  }
+
+}
+
+flex($fg = 1, $fs = null, $fb = null, $important = null) {
+  if $important == important {
+    -webkit-box-flex: $fg
+    -webkit-flex: $fg $fs $fb
+    -moz-box-flex: $fg
+    -moz-flex: $fg $fs $fb
+    -ms-flex: $fg $fs $fb
+    flex: $fg $fs $fb
+  } else {
+    -webkit-box-flex: $fg
+    -webkit-flex: $fg $fs $fb
+    -moz-box-flex: $fg
+    -moz-flex: $fg $fs $fb
+    -ms-flex: $fg $fs $fb
+    flex: $fg $fs $fb
+  }
+}
+
+flex-default($fg = 1, $fs = 1, $important = null) {
+  if $important == important {
+    -webkit-box-flex: $fg
+    -webkit-flex: $fg $fs
+    -moz-box-flex: $fg
+    -moz-flex: $fg $fs
+    -ms-flex: $fg $fs
+    flex: $fg $fs
+  } else {
+    -webkit-box-flex: $fg
+    -webkit-flex: $fg $fs
+    -moz-box-flex: $fg
+    -moz-flex: $fg $fs
+    -ms-flex: $fg $fs
+    flex: $fg $fs
+  }
+}
+
+
+flex-flow($values = (row nowrap), $important = null) {
+  if $important == important {
+    -webkit-flex-flow: $values
+    -moz-flex-flow: $values
+    -ms-flex-flow: $values
+    flex-flow: $values
+  } else {
+    -webkit-flex-flow: $values
+    -moz-flex-flow: $values
+    -ms-flex-flow: $values
+    flex-flow: $values
+  }
+
+
+}
+
+align-items($value = stretch, $important = null) {
+  if $important == important {
+    if $value == flex-start {
+      -webkit-box-align: start
+      -ms-flex-align: start
+    } else if $value == flex-end {
+      -webkit-box-align: end
+      -ms-flex-align: end
+    } else {
+      -webkit-box-align: $value
+      -ms-flex-align: $value
+    }
+    -webkit-align-items: $value
+    -moz-align-items: $value
+    align-items: $value
+  } else {
+    if $value == flex-start {
+      -webkit-box-align: start
+      -ms-flex-align: start
+    } else if $value == flex-end {
+      -webkit-box-align: end
+      -ms-flex-align: end
+    } else {
+      -webkit-box-align: $value
+      -ms-flex-align: $value
+    }
+    -webkit-align-items: $value
+    -moz-align-items: $value
+    align-items: $value
+  }
+}
+
+align-self($value = auto,$important = null) {
+  if $important == important {
+    -webkit-align-self: $value
+    -moz-align-self: $value
+    if $value == flex-start {
+      -ms-flex-item-align: start
+    } else if $value == flex-end {
+      -ms-flex-item-align: end
+    } else {
+      -ms-flex-item-align: $value
+    }
+    align-self: $value
+  } else {
+    -webkit-align-self: $value
+    -moz-align-self: $value
+    if $value == flex-start {
+      -ms-flex-item-align: start
+    } else if $value == flex-end {
+      -ms-flex-item-align: end
+    } else {
+      -ms-flex-item-align: $value
+    }
+    align-self: $value
+  }
+}
+
+align-content($value = stretch, $important = null) {
+  if $important == important {
+    -webkit-align-content: $value
+    -moz-align-content: $value
+    if $value == flex-start {
+      -ms-flex-line-pack: start
+    } else if $value == flex-end {
+      -ms-flex-line-pack: end
+    } else {
+      -ms-flex-line-pack: $value
+    }
+    align-content: $value
+  } else {
+    -webkit-align-content: $value
+    -moz-align-content: $value
+    if $value == flex-start {
+      -ms-flex-line-pack: start
+    } else if $value == flex-end {
+      -ms-flex-line-pack: end
+    } else {
+      -ms-flex-line-pack: $value
+    }
+    align-content: $value
+  }
+}
+
+justify-content($value = stretch,$important = null) {
+  if $important == important {
+    if $value == flex-start {
+      -webkit-box-pack: start
+      -ms-flex-pack: start
+    } else if $value == flex-end {
+      -webkit-box-pack: end
+      -ms-flex-pack: end
+    } else if $value == space-between {
+      -webkit-box-pack: justify
+      -ms-flex-pack: justify
+    } else {
+      -webkit-box-pack: $value
+      -ms-flex-pack: $value
+    }
+    -webkit-justify-content: $value
+    -moz-justify-content: $value
+    justify-content: $value
+  } else {
+    if $value == flex-start {
+      -webkit-box-pack: start
+      -ms-flex-pack: start
+    } else if $value == flex-end {
+      -webkit-box-pack: end
+      -ms-flex-pack: end
+    } else if $value == space-between {
+      -webkit-box-pack: justify
+      -ms-flex-pack: justify
+    } else {
+      -webkit-box-pack: $value
+      -ms-flex-pack: $value
+    }
+    -webkit-justify-content: $value
+    -moz-justify-content: $value
+    justify-content: $value
+  }
+
+}
+
+flex-order($n,$important = null) {
+  if $important == important {
+    -webkit-order: $n
+    -ms-flex-order: $n
+    order: $n
+    -webkit-box-ordinal-group: $n
+  } else {
+    -webkit-order: $n
+    -ms-flex-order: $n
+    order: $n
+    -webkit-box-ordinal-group: $n
+  }
+}
+
+// button按钮
+button-style($bg-color, $border-color, $active-bg-color, $active-border-color, $color) {
+  // border-color: $border-color !important
+  background-color: $bg-color !important
+  // background-image: -webkit-linear-gradient(-90deg, $bg-color, $color)
+  // background-image: linear-gradient(-90deg, $bg-color, $color)
+  color: $color !important
+  // Give desktop users something to play with
+  &:hover {
+    color: $color
+    text-decoration: none
+  }
+  &.active,
+  &.activated {
+    //border-color: $active-border-color
+    //background-color: $active-bg-color
+    //box-shadow: inset 0 1px 4px rgba(0,0,0,0.1)
+  }
+}
+
+button-clear($color, $font-size="") {
+  &.button-clear {
+    border-color: transparent
+    background: none
+    box-shadow: none
+    color: $color
+
+    if $font-size != "" {
+      font-size: $font-size
+    }
+  }
+  &.button-icon {
+    border-color: transparent
+    background: none
+  }
+}
+
+button-outline($color, $text-color="") {
+  &.button-outline {
+    border-color: $color !important
+    background: $white !important
+    color: $color !important
+    &.active,
+    &.activated {
+      //background-color: $color
+      box-shadow: none
+      //color: #fff !important
+    }
+  }
+}

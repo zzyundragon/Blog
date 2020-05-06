@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "download-git-repo": "^3.0.2",
+    "ora": "^4.0.4"
+  },
+  "devDependencies": {
+    "koa": "^2.11.0"
+  }
+}

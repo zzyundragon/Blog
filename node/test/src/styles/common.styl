@@ -1,0 +1,318 @@
+/*
+* @desc 公共样式
+*/
+
+// --------
+// 缩写说明
+// pbg = pageBackground
+// co = cutoff 分割线
+// ctt = content 内容
+// fc = front color 字体颜色
+// --------
+
+// 基础颜色
+$primary = #313b5f // 全站主色调
+$secondary = #d5aa6d // 全站辅助色调
+$third = #ac4848 // 新增 酒红色
+$pBg = #f5f5f5 // 页面背景颜色
+$cttCoLine = #e6e6e6 // 内容分割线颜色
+$navCoLine = #dddddd // 导航分割线
+$gray-333 = #333333
+$gray-666 = #666666
+$gray-999 = #999999
+$gray-disable = #b5b5b5 // 表示失效
+$white = #fff
+$error = #df342d
+$success = #7fc24f
+
+// 按钮
+// -------------------------------
+
+$button-color =                    $gray-333
+$button-block-margin =             10px
+$button-clear-padding =            6px
+$button-border-radius =            5px
+$button-border-width =             1px
+
+$button-font-size =                18px
+$button-height =                   37px
+$button-padding =                  12px
+$button-icon-size =                24px
+
+$button-large-font-size =          20px
+$button-large-height =             50px
+$button-large-padding =            16px
+$button-large-icon-size =          32px
+
+$button-small-font-size =          12px
+$button-small-height =             26px
+$button-small-padding =             4px
+$button-small-icon-size =          16px
+
+$button-bar-button-font-size =     13px
+$button-bar-button-height =        32px
+$button-bar-button-padding =       8px
+$button-bar-button-icon-size =     22px
+
+$button-light-bg =                 $white
+$button-light-text =               $gray-333
+$button-light-border =             $white
+$button-light-active-bg =          #fafafa
+$button-light-active-border =      transparent
+
+
+$button-primary-bg =                $primary
+$button-primary-text =              $white
+$button-primary-border =            $primary
+$button-primary-active-bg =         darken($primary,10%)
+$button-primary-active-border =     transparent
+
+$button-secondary-bg =                $secondary
+$button-secondary-text =              $white
+$button-secondary-border =            $secondary
+$button-secondary-active-bg =         darken($secondary,10%)
+$button-secondary-active-border =     transparent
+
+$button-third-bg =                $third
+$button-third-text =              $white
+$button-third-border =            $third
+$button-third-active-bg =         darken($third,10%)
+$button-third-active-border =     transparent
+
+$button-white-bg =                transparent
+$button-white-text =              $white
+$button-white-border =            $white
+$button-white-active-bg =         transparent
+$button-white-active-border =     $white
+
+$button-disable-bg =                $gray-disable
+$button-disable-text =              $white
+$button-disable-border =            $gray-disable
+$button-disable-active-bg =         darken($gray-disable,10%)
+$button-disable-active-border =     transparent
+
+@import './grid'
+
+// 字体颜色
+.fc-primary
+  color $primary!important
+.fc-secondary
+  color $secondary!important
+.fc-third
+  color $third!important
+.fc-gray-333
+  color $gray-333!important
+.fc-gray-666
+  color $gray-666!important
+.fc-gray-999
+  color $gray-999!important
+.fc-gray-disable
+  color $gray-disable!important
+.fc-white
+  color #ffffff!important
+.fc-error
+  color $error!important
+.fc-success
+  color $success!important
+
+//字体重量
+.fw-bold
+  font-weight bold
+.fw-normal
+  font-weight normal
+
+.line-1
+  border-top 1px solid $cttCoLine
+  transform: scaleY(0.5)
+.line-dashed-1
+  border-top 1px dashed $cttCoLine
+  transform: scaleY(0.5)
+
+// color
+$col = {
+  primary: $primary
+  secondary: $secondary
+  third: $third
+  white: $white
+  error: $error
+  gray-333: $gray-333
+  gray-666: $gray-666
+  gray-999: $gray-999
+  cttCoLine: $cttCoLine
+}
+
+// background
+for index, col in $col
+  .bg-{index}
+    background (col)
+.bg-body, .bg-body.view
+  background #f5f5f5 !important
+// 距离
+// 上下左右方向缩写
+$dir = {
+  t: top
+  b: bottom
+  r: right
+  l: left
+  wd: width
+  hgh: height
+  h: horizon
+  v: vertical
+  a: all
+}
+
+$borderStyle = {
+  dashed: dashed
+  solid: solid
+}
+
+//划线
+for i in 0..5
+  for key, value in $dir
+    for styleIndex, style in $borderStyle
+      for index, col in $col
+        if key != wd && key !=hgh && key != h && key != v && key != a
+          if style == solid
+            .b{key}-{index}-{i}
+              border-{value}-style solid
+              border-{value}-color col
+              border-{value}-width i px
+          if style == dashed
+              .b{key}-{index}-{style}-{i}
+                border-{value}-style dashed
+                border-{value}-color col
+                border-{value}-width i px
+        if key == a
+          if style == solid
+            .b{key}-{index}-{i}
+              border-style solid
+              border-color col
+              border-width i px
+          if style == dashed
+            .b{key}-{index}-{style}-{i}
+              border-style dashed
+              border-color col
+              border-width i px
+
+
+//高度宽度缩写
+//产生 pl-* pr-* pb-* pt-* mt-* mb-* ml-* mr-*
+for i in 0..50
+  for key, value in $dir
+    if key != wd && key !=hgh && key != h && key != v && key != a
+      .m{key}-{i}
+        margin-{value} i px
+      .p{key}-{i}
+        padding-{value} i px
+      .{value}-{i}
+        {value} i px
+    if key == a
+      .m{key}-{i}
+        margin-left i px
+        margin-right i px
+        margin-top i px
+        margin-bottom i px
+      .p{key}-{i}
+        padding-left i px
+        padding-right i px
+        padding-top i px
+        padding-bottom i px
+    if key == h
+      .m{key}-{i}
+        margin-left i px
+        margin-right i px
+      .p{key}-{i}
+        padding-left i px
+        padding-right i px
+    if key == v
+      .m{key}-{i}
+        margin-top i px
+        margin-bottom i px
+      .p{key}-{i}
+        padding-top i px
+        padding-bottom i px
+//产生 top-per-* bottom-per-* wd-per-px hgh-prt-px
+for i in 1..100
+  for k, v in $dir
+    if k == t || k == b
+      .{v}-per-{i}
+        {v} (i)%
+    if k == wd || k == hgh
+      .{k}-per-{i}
+        {v} (i)%
+//产生 字体大小
+for i in 10..50
+  .fz-{i}
+    font-size i px
+//居中 左 右
+.text-right
+  text-align: right!important
+.text-left
+  text-align: left!important
+.text-center
+  text-align: center!important
+//position
+.relative
+  position relative
+.absolute
+  position absolute
+.fixed
+  position fixed !important
+
+//行高
+for i in 10..20
+  .lh-{i*10}
+    line-height (i*10%)
+
+//radius
+for i in 1..30
+  for key, value in $dir
+    if key == t || key == b
+      .radius-{key}-{i}
+        border-{value}-left-radius i px
+        border-{value}-right-radius i px
+    if key == l || key == r
+      .radius-{key}-{i}
+        border-top-{value}-radius i px
+        border-bottom-{value}-radius i px
+    if key == a
+      .radius-{key}-{i}, .radius-{i}
+        border-radius i px
+        border-radius i px
+
+//blcok
+.block
+  display block!important
+.inblock
+  display inline-block!important
+.inline
+  display inline!important
+.hide
+  display none !important
+
+// button
+// @import './button'
+
+// label
+for index, col in $col
+  .label-{index}
+    display inline-block
+    padding 1px 9px
+    border-radius 9px
+    background col
+    color $white
+    line-height 100%
+  .label-outline-{index}
+    display inline-block
+    padding 4px 15px
+    border-radius 14px
+    background transparent
+    color col
+    line-height 100%
+    border col solid 1px
+// 省略号
+.text-ellipsis {
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+}
