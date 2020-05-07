@@ -280,7 +280,6 @@
             await next()
             console.log('fn3 end')
         }
-
         const middlewares = [fn1, fn2, fn3]
         const fn = compose(middlewares)
         console.log(fn())
@@ -302,6 +301,63 @@
     </code>
 </pre> 
 </details>
+
+函数式组合完成异步调用后，完善 imkoa.js
+
+<details>
+   <summary>imKoa.js</summary>
+   <pre>
+    <code>
+       const http = require('http')
+       const context = require('./context')
+       const request = require('./request')
+       const response = require('./response')
+       class ImKoa {
+           constructor() {
+               this.middlewares = []
+           }
+           use(callback) {
+               this.middlewares.push(callback)
+           }
+           listen(...args) {
+               const server = http.createServer(async (req, res) => {
+                   let ctx = this.createContext(req, res)
+                   let fn = this.compose(this.middlewares)
+                   await fn(ctx)
+                   res.end(ctx.body)
+               })
+               server.listen(...args)
+           }
+           createContext(req, res) {
+                const ctx = Object.create(context)
+                ctx.request = Object.create(request)
+                ctx.response = Object.create(response)
+                ctx.req = ctx.request.req = req
+                ctx.res = ctx.response.res = res
+                return ctx
+            }
+            compose(middlewares) {
+                return function(ctx) {
+                    return dispatch(0)
+                    function dispatch(i){
+                        let fn = middlewares[i]
+                        if (!fn) return Promise.resolve()
+                        return Promise.resolve(
+                            fn(ctx, function next() {
+                                return dispatch(i + 1)
+                            })
+                        )
+                    }
+                }
+            }
+       }
+       module.exports = ImKoa
+    </code>
+</pre> 
+</details>
+
+
+
 
 
 
