@@ -302,7 +302,7 @@
 </pre> 
 </details>
 
-函数式组合完成异步调用后，完善 imkoa.js
+函数式组合完成异步调用后，完善 imkoa.js 便可以使用多个use中间件完成业务逻辑的切面描述。责任链模式
 
 <details>
    <summary>imKoa.js</summary>
@@ -355,6 +355,28 @@
     </code>
 </pre> 
 </details>
+
+koa中间件洋葱圈模型，既可以完成顺序的流程操作，同时又可以完成切面描述，例如鉴权
+koa中间件的规范：
+1. 一个async函数
+2. 接受ctx和next两个参数
+3. 任务结束后需要执行next
+
+<pre>
+    <code>
+        const moddleware = async(ctx, next) => {
+            // 来到中间件 洋葱圈的左边
+            next()
+            // 再次来到中间件 洋葱圈的右边
+        }
+    </code>
+</pre>
+
+中间件常见的任务：
+- 请求拦截
+- 路由
+- 日志
+- 静态文件服务
 
 
 

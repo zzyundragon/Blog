@@ -4,6 +4,10 @@
     "ora": "^4.0.4"
   },
   "devDependencies": {
-    "koa": "^2.11.0"
+    "co-redis": "^2.1.1",
+    "koa": "^2.11.0",
+    "koa-redis": "^4.0.1",
+    "mysql2": "^2.1.0",
+    "redis": "^3.0.2"
   }
 }
