@@ -47,6 +47,11 @@ module.exports = appInfo => {
         // mongoose global plugins, expected a function or an array of function and options
         // plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
       },
+    },
+    jwt: {
+      secret: 'eggServer-great',
+      enable: true,
+      match: /^\/api/
     }
   };
 
