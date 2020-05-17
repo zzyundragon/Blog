@@ -24,7 +24,11 @@ function initRouter(app) {
         Object.keys(routes).forEach(key => {
             const [method, path] = key.split(' ')
             console.log(`正在映射地址：${method.toLocaleLowerCase()} ${prefix}${path}`)
-            router[method](prefix + path, routes[key])
+            // router[method](prefix + path, routes[key])
+            router[method](prefix + path, async ctx => {
+                app.ctx = ctx
+                await routes[key](app)
+            })
         })
     })
     return router
@@ -38,4 +42,12 @@ function initController() {
     return ctrls
 }
 
-module.exports = { initRouter, initController }
+function initService() {
+    const services = {}
+    load('service', (fileName, service) => {
+        services[fileName] = service
+    })
+    return services
+}
+
+module.exports = { initRouter, initController, initService }
