@@ -103,4 +103,4 @@ chunkhash，每一个输出文件都有自己的hash值，webpack会进行自动
 | 选项 | 描述 |
 | --- | --- |
 | development | 会将 definePlugin 中的 process.env.NODE_ENV 的值设置为 development。启用 NamedChunksPlugin 和 NameModulesPlugin。有利于开发调试，热更新的处理，识别哪个模块的变化，打印出来 |
-| production | 会将 definePlugin 的 process.env.NODE_ENV 的值设置为 production。|
+| production | 会将 definePlugin 的 process.env.NODE_ENV 的值设置为 production。启用一些生产插件来帮助模块压缩，处理副作用等一些功能|
