@@ -82,5 +82,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name]_[chunkhash:8].css'
     })
-  ]
+  ],
+  devServer: {
+    contentBase: './dist',
+    open: true,
+    port: 8080
+  }
 }
