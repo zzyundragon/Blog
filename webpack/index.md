@@ -152,3 +152,8 @@ dist目录里面没有文件了，文件被保存在了内存当中，访问速�
 - 跨域 proxy
 - mock数据
 
+### Hot Webpack Replacement(HMR:热模块替换)
+
+只模块刷新
+
+js模块HMR，需要手动监听需要HRM的模块，当该模块的内容发生改变的时候回触发回调
