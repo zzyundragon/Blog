@@ -1,9 +1,12 @@
 const path = require('path')
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    login: './src/login.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'my-first-webpack.bundle.js'
+    filename: '[name]_[chunkhash:8].js'
   },
   mode: 'production'
 }

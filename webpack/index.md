@@ -1,8 +1,12 @@
 # webpack
 
-模块打包工具，它要做的事情是分析项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（scss、typescript等），并将其打包为合适的格式供浏览器使用。
+webpack是一个打包模块化JavaScript的工具，它会从入口模块出发，识别出源码中的模块化导入语句，递归地找出入口文件的所有依赖，将入口和其所有的依赖打包到一个单独的文件中去。
+
+它要做的事情是分析项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（scss、typescript等），并将其打包为合适的格式供浏览器使用。
 
 webpack 默认只认js、json的模块，但是在js模块中会引入其他的文件模块，webpack会从入口js文件去分析引用依赖，找到依赖关系将它们转换成浏览器可以识别的文件格式，比如.js .png .css等
+
+webpack不适合用于JavaScript库的构建，因为不够纯粹
 
 ## webpack配置文件
 
@@ -104,3 +108,37 @@ chunkhash，每一个输出文件都有自己的hash值，webpack会进行自动
 | --- | --- |
 | development | 会将 definePlugin 中的 process.env.NODE_ENV 的值设置为 development。启用 NamedChunksPlugin 和 NameModulesPlugin。有利于开发调试，热更新的处理，识别哪个模块的变化，打印出来 |
 | production | 会将 definePlugin 的 process.env.NODE_ENV 的值设置为 production。启用一些生产插件来帮助模块压缩，处理副作用等一些功能|
+
+### module
+
+处理模块
+
+### loader
+
+loader 是有执行顺序的，自右往左
+
+### plugins
+
+plugin可以在webpack运行到某个阶段的时候，帮你做一些事情，类似生命周期的概念
+
+扩展概念，在webpack构建流程中的特定时机注入扩展逻辑来改变构建结果或其他想做的事情
+
+作用于整个构建过程
+
+- htmlWebpackPlugin
+
+  htmlWebpackPlugin会在打包结束后，自动生成一个html文件，并把打包生成的js模块引入到html中
+
+- clean-webpack-plugin
+  
+  每次构建前自动删除dist目录，避免生成冗余文件
+
+- mini-css-extract-plugin
+
+  将css文件提取为一个文件  
+
+### sourceMap
+
+源代码与打包后的代码的映射关系，通过sourceMap定位到源代码。
+
+在dev模式中，默认开启；关闭的话可以再配置文件里设置 `devtool: "none"`
