@@ -211,3 +211,8 @@ package.json 设置sideEffects为false，处理摇树的副作用，针对css等
 
 ### 代码分割 code splitting
 把公共库剥离出去，形成一个独立的模块，并且能够在入口文件默认引入进来
+### Hot Webpack Replacement(HMR:热模块替换)
+
+只模块刷新
+
+js模块HMR，需要手动监听需要HRM的模块，当该模块的内容发生改变的时候回触发回调
