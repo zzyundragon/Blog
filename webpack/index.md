@@ -1,12 +1,10 @@
 # webpack
 
-webpack是一个打包模块化JavaScript的工具，它会从入口模块出发，识别出源码中的模块化导入语句，递归地找出入口文件的所有依赖，将入口和其所有的依赖打包到一个单独的文件中去。
+Webpack 是一个打包模块化 JavaScript 的工具，在 Webpack 里一切文件皆模块，通过 Loader 转换文件，通过 Plugin 注入钩子，最后输出由多个模块组合成的文件。Webpack 专注于构建模块化项目。
 
 它要做的事情是分析项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（scss、typescript等），并将其打包为合适的格式供浏览器使用。
 
 webpack 默认只认js、json的模块，但是在js模块中会引入其他的文件模块，webpack会从入口js文件去分析引用依赖，找到依赖关系将它们转换成浏览器可以识别的文件格式，比如.js .png .css等
-
-webpack不适合用于JavaScript库的构建，因为不够纯粹
 
 ## webpack配置文件
 
@@ -152,3 +150,64 @@ dist目录里面没有文件了，文件被保存在了内存当中，访问速�
 - 跨域 proxy
 - mock数据
 
+### Babel处理ES6
+
+Babel是JavaScript编译器，能将es6/7代码转换成es5，让我们在开发过程中放心使用js新特性而不用担心兼容性问题。并且还可以通过插件机制根据需求灵活的扩展。Babel在执行编译的过程中，会从项目根目录下的 `.babelrc` JSON文件中读取配置。没有该文件则会从loader的options读取配置。 
+
+`babel-loader @babel/core @babel/preset-env` babel-loader是webpack与babel的通信桥梁，@babel/core做分析，不会做把es6转成es5的工作，这部分工作需要用到@babel/preset-env来做，它里面包含了es6/7/8转5的转换规则
+
+babel的处理过程：
+1. 首先从入口进行分析依赖，AST抽象语法树，
+2. 通过语法转换规则来转换代码
+3. 最后生成代码
+
+通过这上面的几步还不够，默认的babel只支持let等一些基础的特性转换，Promise等一些特性还没有转换过来，这时需要借助@babel/polyfill，把es的新特性都装进来，来弥补低版本浏览器中缺失的新特性。
+
+`按需加载，减少冗余`引用了@babel/polyfill以后装了很多新特性，会导致打包的体积变大，这时需要配置按需加载，用到的注入没用到的不注入来减少打包体积。   
+
+<details>
+  <summary>click me</summary>
+  <pre>
+    <code>
+      options: {
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: {
+                edge: '17',
+                firefox: '60',
+                chrome: '67',
+                safari: '11.1'
+              },
+              corejs: 2, // 新版本需要指定核心库版本
+              useBuiltIns: 'usage' // 按需注入 
+            }
+          ]
+        ]
+      }
+    </code>
+  </pre>
+</details>
+
+useBuiltIns 是babel 7的新功能，这个选项告诉babel如何配置 @babel/polyfill，它有三个参数可以使用：
+
+1. entry 需要再webpack的入口文件里 import '@babel/polyfill' 引入一次。babel会根据你的使用情况导入垫片，没有使用的功能不会被导入相应的垫片
+2. usage 不需要import，全自动检测，但是要安装 @babel/polyfill (试验阶段)
+3. false 如果引入了 import '@babel/polyfill'，它不会排除没有使用的垫片，打包体积会很大
+
+### tree Shaking
+只支持ES module的引入方式
+
+      optimization:{
+        usedExports: true
+      }
+
+package.json 设置sideEffects为false，处理摇树的副作用，针对css等文件
+
+      "sideEffects": {
+        '*.css'
+      } 
+
+### 代码分割 code splitting
+把公共库剥离出去，形成一个独立的模块，并且能够在入口文件默认引入进来
