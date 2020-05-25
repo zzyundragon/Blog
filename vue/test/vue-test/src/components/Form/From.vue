@@ -8,11 +8,11 @@
 
 <script>
 export default {
-  name: "index",
+  name: 'index',
   provide() {
     return {
       form: this
-    };
+    }
   },
   props: {
     model: {
@@ -22,8 +22,14 @@ export default {
     rules: {
       type: Object
     }
-  }
-};
+  },
+  methods: {
+    validate(cb) {
+      const tasks = this.$children.filter(item => item.prop).map(item => item.validate())
+      Promise.all(tasks).then(() => cb(true)).catch(() => cb(false))
+    }
+  },
+}
 </script>
 
 <style>

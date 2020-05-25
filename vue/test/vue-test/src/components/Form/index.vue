@@ -2,10 +2,10 @@
   <div>
     <im-form :model="ruleForm" :rules="rules" ref="ruleForm">
       <im-form-item label="用户名" prop="username">
-        <im-input v-model="ruleForm.username" type='text' placeholder='请输入用户名'></im-input>
+        <im-input v-model="ruleForm.username" type="text" placeholder="请输入用户名"></im-input>
       </im-form-item>
       <im-form-item label="密码" prop="password">
-        <im-input v-model="ruleForm.password" type='password' placeholder='请输入密码'></im-input>
+        <im-input v-model="ruleForm.password" type="password" placeholder="请输入密码"></im-input>
       </im-form-item>
       <im-form-item>
         <button type="primary" @click="submitForm('ruleForm')">立即创建</button>
@@ -16,37 +16,46 @@
 </template>
 
 <script>
-import Form from "./From";
-import FormItem from "./FromItem";
-import Input from "./Input";
+import Form from './From'
+import FormItem from './FromItem'
+import Input from './Input'
 export default {
-  name: "index",
+  name: 'index',
   components: {
-    "im-form": Form,
-    "im-form-item": FormItem,
-    "im-input": Input
+    'im-form': Form,
+    'im-form-item': FormItem,
+    'im-input': Input
   },
   data() {
     return {
       ruleForm: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       },
       rules: {
         username: [
-          { required: true, message: "请输入活动名称", trigger: "blur" }
+          { required: true, message: '请输入用户名称', trigger: 'blur', default: '' }
         ],
         password: [
-          { required: true, message: "请选择活动区域", trigger: "blur" }
+          { required: true, message: '请选择用户密码', trigger: 'blur', default: '' }
         ]
       }
-    };
+    }
   },
   methods: {
-    submitForm() {},
-    resetForm() {}
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!')
+        } else {
+          alert('error submit!!')
+          // return false
+        }
+      })
+    },
+    resetForm() { }
   }
-};
+}
 </script>
 
 <style>
