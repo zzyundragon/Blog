@@ -1,5 +1,5 @@
 <template>
-  <div class='hello'>
+  <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <B></B>
@@ -8,21 +8,21 @@
 </template>
 
 <script>
-import B from './B'
-import C from './C'
+import B from "./B";
+import C from "./C";
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   components: { B, C },
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+      msg: "Welcome to Your Vue.js App"
+    };
   },
-  mounted () {
-    this.$children[0].name = '12121'
-    this.$children[1].age = 'abc'
+  mounted() {
+    this.$children[0].name = "12121";
+    this.$children[1].age = "abc";
   }
-}
+};
 </script>
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
