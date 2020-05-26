@@ -7,43 +7,45 @@
 </template>
 
 <script>
-import Schema from 'async-validator'
+import Schema from "async-validator";
 export default {
-  name: 'FormItem',
-  inject: ['form'],
+  name: "FormItem",
+  inject: ["form"],
   data() {
     return {
-      errorMsg: ''
-    }
+      errorMsg: ""
+    };
   },
   props: {
     label: {
       type: String,
-      default: ''
+      default: ""
     },
     prop: {
       type: String
     }
   },
   mounted() {
-    this.$on('validate', this.validate)
+    this.$on("validate", () => {
+      this.validate();
+    });
   },
   methods: {
     validate() {
-      const value = this.form.model[this.prop]
-      const rules = this.form.rules[this.prop]
-      const desc = { [this.prop]: rules }
-      const schema = new Schema(desc)
+      const value = this.form.model[this.prop];
+      const rules = this.form.rules[this.prop];
+      const desc = { [this.prop]: rules };
+      const schema = new Schema(desc);
       return schema.validate({ [this.prop]: value }, errors => {
         if (errors) {
-          this.errorMsg = errors[0].message
+          this.errorMsg = errors[0].message;
         } else {
-          this.errorMsg = ''
+          this.errorMsg = "";
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style>
