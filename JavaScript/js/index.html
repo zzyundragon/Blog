@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1 @click='func'>{{title}}</h1>
+    </div>
+</body>
+<script>
+    let app = new Vue({
+        el: '#root',
+        data: {
+            title: 0
+        },
+        created() {
+            this.func = this.debounce(this.clickFunc, 3000, true)
+        },
+        methods: {
+            clickFunc() {
+                this.title += 1
+            },
+            debounce(func, wait, immediate) {
+                let timeout;
+                return function () {
+                    let context = this;
+                    let args = arguments;
+
+                    if (timeout) clearTimeout(timeout);
+                    if (immediate) {
+                        var callNow = !timeout;
+                        timeout = setTimeout(() => {
+                            timeout = null;
+                        }, wait)
+                        if (callNow) func.apply(context, args)
+                    }
+                    else {
+                        timeout = setTimeout(function () {
+                            func.apply(context, args)
+                        }, wait);
+                    }
+                }
+            },
+            throttle(func, wait, type) {
+                if (type === 1) {
+                    var previous = 0;
+                } else if (type === 2) {
+                    var timeout;
+                }
+                return function () {
+                    let context = this;
+                    let args = arguments;
+                    if (type === 1) {
+                        let now = Date.now();
+
+                        if (now - previous > wait) {
+                            func.apply(context, args);
+                            previous = now;
+                        }
+                    } else if (type === 2) {
+                        if (!timeout) {
+                            timeout = setTimeout(() => {
+                                timeout = null;
+                                func.apply(context, args)
+                            }, wait)
+                        }
+                    }
+                }
+            }
+        },
+    })
+    // app.$mount()
+</script>
+
+</html>
