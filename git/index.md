@@ -43,6 +43,17 @@ git config --[global | local | system] --get section.key
 git config [--local|--global|--system] --unset section.key
 ```
 
+## 配置公钥私钥
+
+```
+ssh-keygen -t rsa -C "xxx@xxx.com"
+```
+### 是否配置成功
+
+```
+ssh -T git@github.com
+```
+
 ## 操作流程
 重要概念：
 - 工作区 git可以追踪到工作区修改的文件
