@@ -41,3 +41,8 @@ vuex状态发生变化的两种方式：
 ### vuex的state和getters是如何映射到各个组件实例中响应式更新状态呢
    
 vuex中的state是响应式的，它借助了vue的响应式原理，将state存入vue实例的data中，vuex的getter则是借助了vue实例中的computed计算属性实现了数据的实时监听。
+
+### vue-router
+
+作用：根据不同的路径映射到不同的视图。vue-router支持三种路由方式：hash、history、abstract，提供了<router-link>和<router-view>两种组件，还提供了简单的路由配置和一系列好用的api。
+
