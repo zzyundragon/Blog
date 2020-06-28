@@ -1,4 +1,4 @@
-1. 写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？
+### 写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？
 
 vue中的key主要用在vue的虚拟dom算法，在新旧节点nodes对比时辨识VNodes。如果不使用key，vue会使用一种最大限度减少动态元素并且尽可能的尝试就地修改或者复用相同类型的元素的算法。而使用key时，它会基于key的变化重新排列元素顺序，并且移除key不存在的元素。有相同父元素的子元素必须有独特的key，重复的key会造成渲染错误。key也可以用于强制替换元素/组件，而不是重复使用它。比如需要完整地触发组件的生命周期，比如触发过渡。
 
@@ -9,11 +9,11 @@ vue中的key主要用在vue的虚拟dom算法，在新旧节点nodes对比时辨
 // 当text发生变化时，span总是会被替换而不是被修改，因此会触发过渡。
 ```
 
-2. 聊聊 Vue 的双向数据绑定，Model 如何改变 View，View 又是如何改变 Model 的 
+### 聊聊 Vue 的双向数据绑定，Model 如何改变 View，View 又是如何改变 Model 的 
 
 采用数据劫持结合发布订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的getter和setter，在数据变动时发布消息给订阅者，触发相应的监听回调。首先将需要观察的数据对象进行递归遍历，包括子属性对象的属性，都加上setter和getter，这样数据对象发生变化时都会触发setter，达到数据变化监听的效果。compile解析模板指令，将模板中的变量替换成数据，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据发生变动，收到通知更新视图。
 
-3. 聊聊 Redux 和 Vuex 的设计思想
+### 聊聊 Redux 和 Vuex 的设计思想
 
 [这篇关于状态共享设计的思想写的太好的](https://zhuanlan.zhihu.com/p/53599723)
 
@@ -33,11 +33,11 @@ vuex状态发生变化的两种方式：
 - 同步操作：view-commit-mutation-state变化-view变化
 - 异步操作：view-dispatch-action-mutation-state变化-view变化
 
-4. vuex中的store是如何挂载注入到组件中的
+### vuex中的store是如何挂载注入到组件中的
   > vue插件机制；全局混入
   
 首先在vue项目中引入vuex，通过vue.use(vuex)安装，利用vue插件机制，使用vue.use方法时会调用vuex的install方法，装载vuex。在install方法中做了两步操作，一是将传入的vue保存并传参给了applyMixin方法，二是applyMixin接收到vue对象后，对vue全局混入了一个beforeCreate钩子函数，将vue实例化时传递的store保存在所有组件的this.$store中。
 
-5. vuex的state和getters是如何映射到各个组件实例中响应式更新状态呢
+### vuex的state和getters是如何映射到各个组件实例中响应式更新状态呢
    
 vuex中的state是响应式的，它借助了vue的响应式原理，将state存入vue实例的data中，vuex的getter则是借助了vue实例中的computed计算属性实现了数据的实时监听。
