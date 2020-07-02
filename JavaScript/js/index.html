@@ -58,7 +58,6 @@
                     let args = arguments;
                     if (type === 1) {
                         let now = Date.now();
-
                         if (now - previous > wait) {
                             func.apply(context, args);
                             previous = now;
