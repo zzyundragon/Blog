@@ -37,7 +37,7 @@
         "@vue/cli-plugin-eslint": "^4.0.0",
         "@vue/cli-plugin-router": "^4.0.0",
         "@vue/cli-plugin-vuex": "^4.0.0",
-        "@vue/cli-service": "^4.0.0",
+        "@vue/cli-service": "^5.0.8",
         "@vue/eslint-config-standard": "^4.0.0",
         "agora-electron-sdk": "^2.9.0-hotfix.2",
         "babel-eslint": "^10.0.1",
