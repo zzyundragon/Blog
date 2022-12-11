@@ -21,7 +21,7 @@
         "image-webpack-loader": "^6.0.0",
         "immutable": "^4.0.0-rc.12",
         "js-md5": "^0.7.3",
-        "qs": "^6.9.0",
+        "qs": "^6.9.7",
         "style-resources-loader": "^1.2.1",
         "uglifyjs-webpack-plugin": "^2.2.0",
         "view-design": "^4.0.1",
